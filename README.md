@@ -38,19 +38,28 @@ Lets see each step in detail.
 ---
 
 ### Step 1: Data Scraping
+
 Data was collected using the GitHub API, following a structured approach for authentication, error handling, and efficient data retrieval.
 
-- **API Authentication**: Used a personal access token (PAT) included in request headers for secure access to the GitHub API.
+Here’s a breakdown of what was done:
 
-- **Rate Limit Monitoring**: Checked remaining requests and reset times, adjusted to Indian Standard Time (IST) for convenience.
+- **API Authentication**: 
+  - The script utilized a personal access token for authentication, which was included in the headers of each API request. This token ensured secure access to the GitHub API while respecting the set rate limits.
 
-- **Data Retrieval**: Focused on Boston-based users with >100 followers. A search endpoint with pagination retrieved user and repository details.
+- **Rate Limit Monitoring**: 
+  - An initial authentication check was performed to retrieve the rate limit status. This involved checking how many requests remained and when the limit would reset. The reset time was adjusted to Indian Standard Time (IST) for convenience.
 
-- **Repository Collection**: Gathered up to 500 public repositories per user.
+- **Data Retrieval**: 
+  - The main focus of data retrieval was on users located in Boston with more than 100 followers. The script employed a search endpoint to find these users, with pagination support to manage the number of results returned in each request. For each user found, detailed information was fetched from the user endpoint, which included their login, name, company, location, email, hireable status, bio, public repository count, followers, following count, and account creation date.
 
-- **Error Handling**: Implemented retry logic and logged errors for any failed requests.
+- **Repository Collection**: 
+  - For each user, the script fetched their public repositories, up to a maximum of 500. This was achieved by sending requests to the repositories endpoint, with pagination handling multiple pages of results
 
-- **Data Storage**: Saved collected data to `users.csv` and `repositories.csv` using Pandas, with an error log for tracking issues.
+- **Error Handling**: 
+  - The script implemented retry logic for API requests that might fail due to transient issues. If an error occurred, it logged the user or repository that could not be fetched for further investigation
+
+- **Data Storage**: 
+  - All collected data was stored in two separate lists, which were then converted into Pandas DataFrames and saved as CSV files (users.csv and repositories.csv). An error log was also created to document any failures during the scraping process.
 
 
 
@@ -205,7 +214,7 @@ if check_auth():
             print("Failed to fetch users data or no more users to fetch.")
             break
 
-    # Create DataFrames and save to CSV without any data cleaning
+    # Create DataFrames and save to CSV
     users_df = pd.DataFrame(all_users_data)
     repos_df = pd.DataFrame(all_repositories_data)
     users_df.to_csv("users.csv", index=False)
@@ -232,7 +241,7 @@ else:
   - Removed any leading whitespace and the '@' character from the beginning of each company name.
   - Converted all company names to uppercase to ensure uniformity
 - **Hireable Field** :
-  - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null, providing a consistent format for boolean values.
+  - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null.
 - **Data Saving** :
   - Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
 
@@ -256,7 +265,7 @@ users_df.head()
 
 ### Data Cleaning for repositories.csv
 - **Boolean Fields**:
-  - Formatted the 'has_projects' and 'has_wiki' fields to 'true', 'false', or leave as an empty string if null. This standardized the presentation of boolean fields across the dataset.
+  - Formatted the 'has_projects' and 'has_wiki' fields to 'true', 'false', or leave as an empty string if null.
 - **Data Saving** :
   - Saved the cleaned repository data to 'cleaned_repositories2.csv' and displayed a sample to ensure the cleaning was executed as expected.
 
