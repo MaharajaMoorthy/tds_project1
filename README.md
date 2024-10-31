@@ -21,7 +21,22 @@ This project involved scraping and analyzing data from GitHub users in Boston wi
 
 ## Steps Involved in the Project
 
-### Step 1: Data Scraping Process
+### Step 1. Data Scraping:
+- Utilized the GitHub API with a personal access token to retrieve data on Boston users who had more than 100 followers. Collected comprehensive user details and repository information.
+
+### Step 2. Data Cleaning:
+- Cleaned the collected data to ensure consistency and accuracy. This included trimming whitespace, normalizing text fields such as company names, and formatting data according to the specifications in the problem statement.
+
+### Step 3. Data Analysis:
+- Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
+
+### Step 4. Documentation, Reporting, and Upload :
+- Compiled the findings and insights into a README document that summarized the data scraping process, key findings, and actionable recommendations based on the analysis. Prepared all project files, including the Python scripts for scraping and cleaning, the CSV files, and the README, and uploaded them to a GitHub repository.
+
+Lets see each step in detail.
+---
+
+### Step 1: Data Scraping
 Data was collected using the GitHub API, following a structured approach for authentication, error handling, and efficient data retrieval.
 
 - **API Authentication**: Used a personal access token (PAT) included in request headers for secure access to the GitHub API.
@@ -261,6 +276,7 @@ repositories_df.head()
 ---
 
 ## Step 3: Data Analysis
+
 Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
 
 **I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.**
@@ -299,6 +315,7 @@ Analyzed the cleaned data to address the project assignment questions and provid
 ---
 
 ## Step 4: Documentation, Reporting and Upload
+
 ### README Documentation: 
 - Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
 
