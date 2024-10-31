@@ -230,13 +230,13 @@ else:
 
 ## Step 2: Data Cleaning
 
-### Data Cleaning for users.csv
-- **Company Field**:
+### Data Cleaning for `users.csv` :
+> **Company Field**:
   - Removed any leading whitespace and the '@' character from the beginning of each company name.
   - Converted all company names to uppercase to ensure uniformity
-- **Hireable Field** :
+> **Hireable Field** :
   - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null.
-- **Data Saving** :
+> **Data Saving** :
   - Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
 
 ```
@@ -257,10 +257,10 @@ users_df.head()
 
 ```
 
-### Data Cleaning for repositories.csv
-- **Boolean Fields**:
+### Data Cleaning for `repositories.csv` :
+> **Boolean Fields**:
   - Formatted the 'has_projects' and 'has_wiki' fields to 'true', 'false', or leave as an empty string if null.
-- **Data Saving** :
+> **Data Saving** :
   - Saved the cleaned repository data to 'cleaned_repositories2.csv' and displayed a sample to ensure the cleaning was executed as expected.
 
 ```
@@ -291,48 +291,48 @@ Analyzed the cleaned data to address the project assignment questions and provid
 
 ### Some insights from the data analysis:
 
-- **Top 5 Users by Followers** : The most-followed user, "brianyu28," has over 13,200 followers, followed by "PatrickAlphaC" with 9,670 and others close behind, showing strong influence.
+> **Top 5 Users by Followers** : The most-followed user, "brianyu28," has over 13,200 followers, followed by "PatrickAlphaC" with 9,670 and others close behind, showing strong influence.
 
 
-- **Top 5 Users by Public Repositories** : "JLLeitschuh" leads with an impressive 1,534 repositories, followed by users like "bahmutov" with 1,245. High repository counts hint at consistent productivity and contribution.
+> **Top 5 Users by Public Repositories** : "JLLeitschuh" leads with an impressive 1,534 repositories, followed by users like "bahmutov" with 1,245. High repository counts hint at consistent productivity and contribution.
 
 
-- **Most Common Companies** : The top employers include major names like Northeastern University (16 users), Google (12), and Microsoft (10), indicating strong tech community support.
+> **Most Common Companies** : The top employers include major names like Northeastern University (16 users), Google (12), and Microsoft (10), indicating strong tech community support.
 
 
-- **Most Common Locations** : Most users are based in or around Boston, MA, with variations like "Boston, MA, USA" and "Boston, USA" being frequent among 267 recorded users.
+> **Most Common Locations** : Most users are based in or around Boston, MA, with variations like "Boston, MA, USA" and "Boston, USA" being frequent among 267 recorded users.
 
 
-- **Top 5 Repositories by Stars** : The repository "rapid7/metasploit-framework" has an astounding 34,091 stars, making it a top project in Ruby and showcasing a global user interest in security tools.
+> **Top 5 Repositories by Stars** : The repository "rapid7/metasploit-framework" has an astounding 34,091 stars, making it a top project in Ruby and showcasing a global user interest in security tools.
 
 
-- **Most Common Programming Languages** : JavaScript, Python, and HTML are dominant, with JavaScript appearing in over 7,700 repositories, highlighting trends in development preferences.
+> **Most Common Programming Languages** : JavaScript, Python, and HTML are dominant, with JavaScript appearing in over 7,700 repositories, highlighting trends in development preferences.
 
 
-- **Repositories with Projects Enabled** : 97.9% of repositories have project features enabled, showing a widespread interest in organizing work within GitHub itself.
+> **Repositories with Projects Enabled** : 97.9% of repositories have project features enabled, showing a widespread interest in organizing work within GitHub itself.
 
 
-- **Repositories with Wiki Enabled** : 85.8% of repositories use GitHub’s wiki, indicating a strong inclination toward documentation and knowledge-sharing.
+> **Repositories with Wiki Enabled** : 85.8% of repositories use GitHub’s wiki, indicating a strong inclination toward documentation and knowledge-sharing.
 
 
-- **Top 5 Licenses Used** : The MIT License is the most popular (9,748 repos), followed by Apache and GPL licenses, reflecting an open-source focus among developers.
+> **Top 5 Licenses Used** : The MIT License is the most popular (9,748 repos), followed by Apache and GPL licenses, reflecting an open-source focus among developers.
 
 
-- **Oldest GitHub Account** : User "evan" holds the oldest account, created on February 13, 2008, showing early adoption and experience in the GitHub ecosystem.
+> **Oldest GitHub Account** : User "evan" holds the oldest account, created on February 13, 2008, showing early adoption and experience in the GitHub ecosystem.
 
 ---
 
 ## Step 4: Documentation, Reporting and Upload
 
-### README Documentation: 
-- Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
+> ### README Documentation: 
+  - Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
 
-### Project Files: 
-Organized all relevant project files within the repository, including:
-- The cleaned CSV files (users.csv and repositories.csv) for easy access to the processed data.
-- This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
-- A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
+> ### Project Files: 
+  Organized all relevant project files within the repository, including: 
+  - The cleaned CSV files (`users.csv` and `repositories.csv`) for easy access to the processed data.
+  - This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
+  - A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
 
-### Final Upload to GitHub: 
+> ### Final Upload to GitHub: 
 - Uploaded the README, CSV files, and the PDF of the Google Colab code to a GitHub repository.
 
