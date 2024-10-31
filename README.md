@@ -1,13 +1,13 @@
 # Tools in Data Science - Project 1
 
 - ### Data Scraping : 
-  - Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. The focus was on users located in Boston with over 100 followers. The process included pagination to retrieve up to 500 repositories per user, gathering profile details and repository data. Error handling with retry logic was implemented to ensure reliable data collection.
+  > Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. The focus was on users located in Boston with over 100 followers. The process included pagination to retrieve up to 500 repositories per user, gathering profile details and repository data. Error handling with retry logic was implemented to ensure reliable data collection.
 
 - ### Interesting Finding : 
-  - GitHub was founded on February 8, 2008. Boston-based user "evan" was the first to sign up from the city on February 13, 2008, but "joshuaclayton," who joined fifth, created the first repository, "joshuaclayton/jdclayton," on March 15, 2008.
+  > GitHub was founded on February 8, 2008. Boston-based user "evan" was the first to sign up from the city on February 13, 2008, but "joshuaclayton," who joined fifth, created the first repository, "joshuaclayton/jdclayton," on March 15, 2008.
 
 - ### Actionable Recommendation for Developers : 
-  - Since a significant portion of repositories utilize wikis (85.8%) and project features (97.9%), developers should ensure their repositories have comprehensive documentation. This helps users understand the project and encourages contributions.
+  > Since a significant portion of repositories utilize wikis (85.8%) and project features (97.9%), developers should ensure their repositories have comprehensive documentation. This helps users understand the project and encourages contributions.
 
 ---
 
