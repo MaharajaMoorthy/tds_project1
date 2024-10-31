@@ -1,44 +1,38 @@
-Tools in Data Science - Project 1 
-Summary
-Data Scraping: Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. Targeted users in Boston with over 100 followers, utilizing pagination to retrieve multiple pages and up to 500 repositories per user, collecting profile details and repository data. Error handling with retry logic ensured reliable data collection.
+# Tools in Data Science - Project 1
+
+## Summary
+
+### Data Scraping
+Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. The focus was on users located in Boston with over 100 followers. The process included pagination to retrieve up to 500 repositories per user, gathering profile details and repository data. Error handling with retry logic was implemented to ensure reliable data collection.
+
+### Interesting Finding
+GitHub was founded on February 8, 2008. Boston-based user "evan" was the first to sign up from the city on February 13, 2008, but "joshuaclayton," who joined fifth, created the first repository, "joshuaclayton/jdclayton," on March 15, 2008.
+
+### Actionable Recommendation for Developers
+Since a significant portion of repositories utilize wikis (85.8%) and project features (97.9%), developers should ensure their repositories have comprehensive documentation. This helps users understand the project and encourages contributions.
+
+## Project Overview
+This project involved scraping and analyzing data from GitHub users in Boston with over 100 followers to identify trends in programming languages, user engagement, and repository characteristics. The tools and libraries used included the GitHub API for data retrieval, Python for scripting and data manipulation, and Pandas for data organization. Final project deliverables included:
+- CSV files (`users.csv` and `repositories.csv`)
+- A README document
+- Code for data collection and cleaning
+
+---
+
+## Steps Involved in the Project
+
+### Step 1: Data Scraping Process
+Data was collected using the GitHub API, following a structured approach for authentication, error handling, and efficient data retrieval.
+
+- **API Authentication**: Used a personal access token (PAT) included in request headers for secure access to the GitHub API.
+- **Rate Limit Monitoring**: Checked remaining requests and reset times, adjusted to Indian Standard Time (IST) for convenience.
+- **Data Retrieval**: Focused on Boston-based users with >100 followers. A search endpoint with pagination retrieved user and repository details.
+- **Repository Collection**: Gathered up to 500 public repositories per user.
+- **Error Handling**: Implemented retry logic and logged errors for any failed requests.
+- **Data Storage**: Saved collected data to `users.csv` and `repositories.csv` using Pandas, with an error log for tracking issues.
 
 
-Interesting Fact from the Data Analysis: GitHub was founded on February 8, 2008. User "evan," who signed up on February 13, 2008, was the first from Boston, but not the first to create a repository. That honor goes to "joshuaclayton," the fifth to join, who published the first repository, "joshuaclayton/jdclayton," on March 15, 2008.
 
-
-Actionable Recommendation for Developers: Given that a significant proportion of repositories utilize wikis (85.8%) and project features (97.9%), developers should ensure their repositories have comprehensive documentation. Clear, detailed documentation helps users understand how to use the project and encourages contributions from others.
-Project Overview
-	For my TDS Project 1, I was tasked with scraping and analyzing data from GitHub users in Boston who have more than 100 followers. The objective was to gather insights about these influential users and their repositories to identify trends in programming languages, user engagement, and repository characteristics. I accomplished this using the GitHub API for data retrieval, Python for scripting and data manipulation, and the Pandas library for data organization. The final deliverables for the project included two CSV files (users.csv and repositories.csv), a README document, and the code used for data collection and cleaning.
-
-Steps Involved in the Project
-Data Scraping:
-	Utilized the GitHub API with a personal access token to retrieve data on Boston users who had more than 100 followers. Collected comprehensive user details and repository information.
-
-
-Data Cleaning:
-	Cleaned the collected data to ensure consistency and accuracy. This included trimming whitespace, normalizing text fields such as company names, and formatting data according to the specifications in the problem statement.
-
-
-Data Analysis:
-	Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
-
-
-Documentation, Reporting, and Upload
-	Compiled the findings and insights into a README document that summarized the data scraping process, key findings, and actionable recommendations based on the analysis. Prepared all project files, including the Python scripts for scraping and cleaning, the CSV files, and the README, and uploaded them to a GitHub repository to ensure all components were accessible for review and further development.
-Step 1: Data Scraping Process
-The data was collected using the GitHub API, which followed a structured approach to ensure authentication, error handling, and efficient data retrieval. Here’s a breakdown of what was done:
-API Authentication:
-The script utilized a personal access token for authentication, which was included in the headers of each API request. This token ensured secure access to the GitHub API while respecting the set rate limits.
-Rate Limit Monitoring:
-An initial authentication check was performed to retrieve the rate limit status. This involved checking how many requests remained and when the limit would reset. The reset time was adjusted to Indian Standard Time (IST) for convenience.
-Data Retrieval:
-The main focus of data retrieval was on users located in Boston with more than 100 followers. The script employed a search endpoint to find these users, with pagination support to manage the number of results returned in each request. For each user found, detailed information was fetched from the user endpoint, which included their login, name, company, location, email, hireable status, bio, public repository count, followers, following count, and account creation date.
-Repository Collection:
-For each user, the script fetched their public repositories, up to a maximum of 500. This was achieved by sending requests to the repositories endpoint, with pagination handling multiple pages of results.
-Error Handling:
-The script implemented retry logic for API requests that might fail due to transient issues. If an error occurred, it logged the user or repository that could not be fetched for further investigation.
-Data Storage:
-All collected data was stored in two separate lists, which were then converted into Pandas DataFrames and saved as CSV files (users.csv and repositories.csv). An error log was also created to document any failures during the scraping process.
 
 Here is the code block 
 
