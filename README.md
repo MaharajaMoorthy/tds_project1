@@ -1,7 +1,5 @@
 # Tools in Data Science - Project 1
 
-## Summary
-
 - **Data Scraping** : Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. The focus was on users located in Boston with over 100 followers. The process included pagination to retrieve up to 500 repositories per user, gathering profile details and repository data. Error handling with retry logic was implemented to ensure reliable data collection.
 
 - **Interesting Finding** : GitHub was founded on February 8, 2008. Boston-based user "evan" was the first to sign up from the city on February 13, 2008, but "joshuaclayton," who joined fifth, created the first repository, "joshuaclayton/jdclayton," on March 15, 2008.
@@ -22,28 +20,32 @@ This project involved scraping and analyzing data from GitHub users in Boston wi
 Data was collected using the GitHub API, following a structured approach for authentication, error handling, and efficient data retrieval.
 
 - **API Authentication**: Used a personal access token (PAT) included in request headers for secure access to the GitHub API.
+
 - **Rate Limit Monitoring**: Checked remaining requests and reset times, adjusted to Indian Standard Time (IST) for convenience.
+
 - **Data Retrieval**: Focused on Boston-based users with >100 followers. A search endpoint with pagination retrieved user and repository details.
+
 - **Repository Collection**: Gathered up to 500 public repositories per user.
+
 - **Error Handling**: Implemented retry logic and logged errors for any failed requests.
+
 - **Data Storage**: Saved collected data to `users.csv` and `repositories.csv` using Pandas, with an error log for tracking issues.
+
 
 
 ### Here is the code block 
 
-'''python
+```python
 import requests
 import pandas as pd
 import time
 from datetime import datetime, timezone, timedelta
-
 
 # Set up headers for GitHub API authentication
 access_token = "SECRET KEY"
 headers = {
     "Authorization": f"Bearer {access_token}"
 }
-
 
 # Function to check GitHub API authentication and rate limit reset time in IST
 def check_auth():
@@ -63,7 +65,6 @@ def check_auth():
     except requests.exceptions.RequestException as e:
         print("Authentication check failed due to network error:", e)
         return False
-
 
 # Helper function to make a request with retries
 def make_request(url, headers, params=None, retries=3, timeout=10):
@@ -88,7 +89,6 @@ if check_auth():
         "per_page": 100,
         "page": 1
     }
-
 
     all_users_data = []         # To store user data for users.csv
     all_repositories_data = []  # To store repository data for repositories.csv
@@ -213,19 +213,20 @@ if check_auth():
 else:
     print("Authentication check failed. Exiting.")
 
+``` 
 
-''' 
+---
 
 ## Step 2: Data Cleaning
 ### Data Cleaning for users.csv
 - **Company Field**:
-- - Removed any leading whitespace and the '@' character from the beginning of each company name.
-- - Converted all company names to uppercase to ensure uniformity
+  - Removed any leading whitespace and the '@' character from the beginning of each company name.
+  - Converted all company names to uppercase to ensure uniformity
 - **Hireable Field** :
-- - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null, providing a consistent format for boolean values.
+  - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null, providing a consistent format for boolean values.
 - **Data Saving** :
--- Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
-'''
+  - Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
+```
 # Clean up the 'company' field
 users_df['company'] = users_df['company'].str.strip()         # Remove whitespace
 users_df['company'] = users_df['company'].str.lstrip('@')     # Strip leading '@'
@@ -239,70 +240,74 @@ users_df.to_csv('cleaned_users2.csv', index=False)
 
 # Display a sample of the cleaned data to verify
 users_df.head()
-'''
+```
 
-Data Cleaning for repositories.csv
-Boolean Fields:
-Formatted the 'has_projects' and 'has_wiki' fields to 'true', 'false', or leave as an empty string if null. This standardized the presentation of boolean fields across the dataset.
-Data Saving:
-Saved the cleaned repository data to 'cleaned_repositories2.csv' and displayed a sample to ensure the cleaning was executed as expected.
+### Data Cleaning for repositories.csv
+- **Boolean Fields**:
+  - Formatted the 'has_projects' and 'has_wiki' fields to 'true', 'false', or leave as an empty string if null. This standardized the presentation of boolean fields across the dataset.
+- **Data Saving** :
+  - Saved the cleaned repository data to 'cleaned_repositories2.csv' and displayed a sample to ensure the cleaning was executed as expected.
 
+```python
 #  Format boolean fields to be 'true', 'false', or empty string for nulls
 repositories_df['has_projects'] = repositories_df['has_projects'].apply(lambda x: 'true' if x is True else ('false' if x is False else ''))
 repositories_df['has_wiki'] = repositories_df['has_wiki'].apply(lambda x: 'true' if x is True else ('false' if x is False else ''))
 
-
 # Save the cleaned file to confirm changes
 repositories_df.to_csv('cleaned_repositories2.csv', index=False)
 
-
 # Display a sample to confirm the output
 repositories_df.head()
+```
 
+---
 
-Step 3: Data Analysis
+## Step 3: Data Analysis
 Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
+
 I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.
-Some insights from the data analysis:
-Top 5 Users by Followers: The most-followed user, "brianyu28," has over 13,200 followers, followed by "PatrickAlphaC" with 9,670 and others close behind, showing strong influence.
+
+### Some insights from the data analysis:
+
+- Top 5 Users by Followers** : The most-followed user, "brianyu28," has over 13,200 followers, followed by "PatrickAlphaC" with 9,670 and others close behind, showing strong influence.
 
 
-Top 5 Users by Public Repositories: "JLLeitschuh" leads with an impressive 1,534 repositories, followed by users like "bahmutov" with 1,245. High repository counts hint at consistent productivity and contribution.
+- **Top 5 Users by Public Repositories** : "JLLeitschuh" leads with an impressive 1,534 repositories, followed by users like "bahmutov" with 1,245. High repository counts hint at consistent productivity and contribution.
 
 
-Most Common Companies: The top employers include major names like Northeastern University (16 users), Google (12), and Microsoft (10), indicating strong tech community support.
+- **Most Common Companies** : The top employers include major names like Northeastern University (16 users), Google (12), and Microsoft (10), indicating strong tech community support.
 
 
-Most Common Locations: Most users are based in or around Boston, MA, with variations like "Boston, MA, USA" and "Boston, USA" being frequent among 267 recorded users.
+- **Most Common Locations** : Most users are based in or around Boston, MA, with variations like "Boston, MA, USA" and "Boston, USA" being frequent among 267 recorded users.
 
 
-Top 5 Repositories by Stars: The repository "rapid7/metasploit-framework" has an astounding 34,091 stars, making it a top project in Ruby and showcasing a global user interest in security tools.
+- **Top 5 Repositories by Stars** : The repository "rapid7/metasploit-framework" has an astounding 34,091 stars, making it a top project in Ruby and showcasing a global user interest in security tools.
 
 
-Most Common Programming Languages: JavaScript, Python, and HTML are dominant, with JavaScript appearing in over 7,700 repositories, highlighting trends in development preferences.
+- **Most Common Programming Languages** : JavaScript, Python, and HTML are dominant, with JavaScript appearing in over 7,700 repositories, highlighting trends in development preferences.
 
 
-Repositories with Projects Enabled: 97.9% of repositories have project features enabled, showing a widespread interest in organizing work within GitHub itself.
+- **Repositories with Projects Enabled** : 97.9% of repositories have project features enabled, showing a widespread interest in organizing work within GitHub itself.
 
 
-Repositories with Wiki Enabled: 85.8% of repositories use GitHub’s wiki, indicating a strong inclination toward documentation and knowledge-sharing.
+- **Repositories with Wiki Enabled** : 85.8% of repositories use GitHub’s wiki, indicating a strong inclination toward documentation and knowledge-sharing.
 
 
-Top 5 Licenses Used: The MIT License is the most popular (9,748 repos), followed by Apache and GPL licenses, reflecting an open-source focus among developers.
+- **Top 5 Licenses Used** : The MIT License is the most popular (9,748 repos), followed by Apache and GPL licenses, reflecting an open-source focus among developers.
 
 
-Oldest GitHub Account: User "evan" holds the oldest account, created on February 13, 2008, showing early adoption and experience in the GitHub ecosystem.
+- **Oldest GitHub Account** : User "evan" holds the oldest account, created on February 13, 2008, showing early adoption and experience in the GitHub ecosystem.
 
-Step 3: Documentation, Reporting and Upload
-README Documentation: 
-	Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
+---
 
+## Step 4: Documentation, Reporting and Upload
+### README Documentation: 
+Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
 
-Project Files: Organized all relevant project files within the repository, including:
-The cleaned CSV files (users.csv and repositories.csv) for easy access to the processed data.
-This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
-A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
+### Project Files: Organized all relevant project files within the repository, including:
+- The cleaned CSV files (users.csv and repositories.csv) for easy access to the processed data.
+- This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
+- A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
 
-
-Final Upload to GitHub: Uploaded the README, CSV files, and the PDF of the Google Colab code to a GitHub repository.
+### Final Upload to GitHub: Uploaded the README, CSV files, and the PDF of the Google Colab code to a GitHub repository.
 
