@@ -35,7 +35,9 @@ Data was collected using the GitHub API, following a structured approach for aut
 
 ### Here is the code block 
 
-```python
+
+```
+
 import requests
 import pandas as pd
 import time
@@ -80,7 +82,6 @@ def make_request(url, headers, params=None, retries=3, timeout=10):
         time.sleep(2)  # wait before retrying
     return None
 
-
 # Proceed only if authenticated
 if check_auth():
     search_url = "https://api.github.com/search/users"
@@ -95,7 +96,6 @@ if check_auth():
     error_log_data = []         # To log users whose data could not be fetched
     users_processed = 0         # Counter to track number of users processed
 
-
     while True:
         # Fetch the current page of users
         response = make_request(search_url, headers, params=params)
@@ -104,20 +104,16 @@ if check_auth():
             users = data.get("items", [])
             print(f"Found {len(users)} users on page {params['page']}")
 
-
             if not users:
                 break  # No more users to process
-
 
             for user in users:
                 # Fetch full user details
                 user_detail_url = f"https://api.github.com/users/{user['login']}"
                 user_detail_response = make_request(user_detail_url, headers)
 
-
                 if user_detail_response and user_detail_response.status_code == 200:
                     user_detail = user_detail_response.json()
-
 
                     # Collect user details for users.csv without any cleaning
                     user_data = {
@@ -135,7 +131,6 @@ if check_auth():
                     }
                     all_users_data.append(user_data)
 
-
                     # Fetch up to 500 repositories with pagination and track total for each user
                     repos_fetched = 0
                     repo_page = 1
@@ -143,12 +138,10 @@ if check_auth():
                         repos_url = f"https://api.github.com/users/{user['login']}/repos"
                         repo_response = make_request(repos_url, headers, params={"per_page": 100, "page": repo_page})
 
-
                         if repo_response and repo_response.status_code == 200:
                             repositories = repo_response.json()
                             if not repositories:
                                 break  # No more repositories to fetch
-
 
                             for repo in repositories:
                                 repo_data = {
@@ -168,24 +161,19 @@ if check_auth():
 
                             repo_page += 1  # Move to the next page of repositories
 
-
                             if repos_fetched >= 500:
                                 break  # Stop fetching if 500 repositories are reached
                         else:
                             error_log_data.append({"login": user_detail.get("login", ""), "error": "Failed to fetch repositories"})
                             break
 
-
                     print(f"Total repositories fetched for {user_detail.get('login', '')}: {repos_fetched}")
-
 
                 else:
                     error_log_data.append({"login": user.get("login", ""), "error": "Failed to fetch user details"})
 
-
                 users_processed += 1
                 print(f"Total users processed: {users_processed}")
-
 
             # Check if there are more pages to fetch
             if 'next' in response.links:
@@ -196,14 +184,12 @@ if check_auth():
             print("Failed to fetch users data or no more users to fetch.")
             break
 
-
     # Create DataFrames and save to CSV without any data cleaning
     users_df = pd.DataFrame(all_users_data)
     repos_df = pd.DataFrame(all_repositories_data)
     users_df.to_csv("users.csv", index=False)
     repos_df.to_csv("repositories.csv", index=False)
     print("Data saved to users.csv and repositories.csv.")
-
 
     # Save error log if any
     if error_log_data:
@@ -213,11 +199,13 @@ if check_auth():
 else:
     print("Authentication check failed. Exiting.")
 
+
 ``` 
 
 ---
 
 ## Step 2: Data Cleaning
+
 ### Data Cleaning for users.csv
 - **Company Field**:
   - Removed any leading whitespace and the '@' character from the beginning of each company name.
@@ -226,7 +214,9 @@ else:
   - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null, providing a consistent format for boolean values.
 - **Data Saving** :
   - Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
+
 ```
+
 # Clean up the 'company' field
 users_df['company'] = users_df['company'].str.strip()         # Remove whitespace
 users_df['company'] = users_df['company'].str.lstrip('@')     # Strip leading '@'
@@ -240,6 +230,7 @@ users_df.to_csv('cleaned_users2.csv', index=False)
 
 # Display a sample of the cleaned data to verify
 users_df.head()
+
 ```
 
 ### Data Cleaning for repositories.csv
@@ -248,7 +239,8 @@ users_df.head()
 - **Data Saving** :
   - Saved the cleaned repository data to 'cleaned_repositories2.csv' and displayed a sample to ensure the cleaning was executed as expected.
 
-```python
+```
+
 #  Format boolean fields to be 'true', 'false', or empty string for nulls
 repositories_df['has_projects'] = repositories_df['has_projects'].apply(lambda x: 'true' if x is True else ('false' if x is False else ''))
 repositories_df['has_wiki'] = repositories_df['has_wiki'].apply(lambda x: 'true' if x is True else ('false' if x is False else ''))
@@ -258,6 +250,7 @@ repositories_df.to_csv('cleaned_repositories2.csv', index=False)
 
 # Display a sample to confirm the output
 repositories_df.head()
+
 ```
 
 ---
