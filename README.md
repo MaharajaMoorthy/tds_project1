@@ -2,14 +2,11 @@
 
 ## Summary
 
-- ### Data Scraping
-Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. The focus was on users located in Boston with over 100 followers. The process included pagination to retrieve up to 500 repositories per user, gathering profile details and repository data. Error handling with retry logic was implemented to ensure reliable data collection.
+- **Data Scraping** : Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. The focus was on users located in Boston with over 100 followers. The process included pagination to retrieve up to 500 repositories per user, gathering profile details and repository data. Error handling with retry logic was implemented to ensure reliable data collection.
 
-### Interesting Finding
-GitHub was founded on February 8, 2008. Boston-based user "evan" was the first to sign up from the city on February 13, 2008, but "joshuaclayton," who joined fifth, created the first repository, "joshuaclayton/jdclayton," on March 15, 2008.
+- **Interesting Finding** : GitHub was founded on February 8, 2008. Boston-based user "evan" was the first to sign up from the city on February 13, 2008, but "joshuaclayton," who joined fifth, created the first repository, "joshuaclayton/jdclayton," on March 15, 2008.
 
-### Actionable Recommendation for Developers
-Since a significant portion of repositories utilize wikis (85.8%) and project features (97.9%), developers should ensure their repositories have comprehensive documentation. This helps users understand the project and encourages contributions.
+- **Actionable Recommendation for Developers** : Since a significant portion of repositories utilize wikis (85.8%) and project features (97.9%), developers should ensure their repositories have comprehensive documentation. This helps users understand the project and encourages contributions.
 
 ## Project Overview
 This project involved scraping and analyzing data from GitHub users in Boston with over 100 followers to identify trends in programming languages, user engagement, and repository characteristics. The tools and libraries used included the GitHub API for data retrieval, Python for scripting and data manipulation, and Pandas for data organization. Final project deliverables included:
@@ -32,11 +29,9 @@ Data was collected using the GitHub API, following a structured approach for aut
 - **Data Storage**: Saved collected data to `users.csv` and `repositories.csv` using Pandas, with an error log for tracking issues.
 
 
+### Here is the code block 
 
-
-Here is the code block 
-
-
+'''python
 import requests
 import pandas as pd
 import time
@@ -219,33 +214,32 @@ else:
     print("Authentication check failed. Exiting.")
 
 
+''' 
 
-Step 2: Data Cleaning
-Data Cleaning for users.csv
-Company Field:
-Removed any leading whitespace and the '@' character from the beginning of each company name.
-Converted all company names to uppercase to ensure uniformity
-Hireable Field:
-Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null, providing a consistent format for boolean values.
-Data Saving:
-Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
+## Step 2: Data Cleaning
+### Data Cleaning for users.csv
+- **Company Field**:
+- - Removed any leading whitespace and the '@' character from the beginning of each company name.
+- - Converted all company names to uppercase to ensure uniformity
+- **Hireable Field** :
+- - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null, providing a consistent format for boolean values.
+- **Data Saving** :
+-- Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
+'''
 # Clean up the 'company' field
 users_df['company'] = users_df['company'].str.strip()         # Remove whitespace
 users_df['company'] = users_df['company'].str.lstrip('@')     # Strip leading '@'
 users_df['company'] = users_df['company'].str.upper()         # Convert to uppercase
 
-
 # Format the 'hireable' column specifically as 'true', 'false', or empty string if null
 users_df['hireable'] = users_df['hireable'].apply(lambda x: 'true' if x is True else ('false' if x is False else ''))
-
 
 # Save the cleaned file to confirm changes
 users_df.to_csv('cleaned_users2.csv', index=False)
 
-
 # Display a sample of the cleaned data to verify
 users_df.head()
-
+'''
 
 Data Cleaning for repositories.csv
 Boolean Fields:
