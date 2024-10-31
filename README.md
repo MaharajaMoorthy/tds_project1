@@ -2,7 +2,7 @@
 
 ## Summary
 
-### Data Scraping
+- ### Data Scraping
 Data was scraped from the GitHub API using a personal access token (PAT) to authenticate requests. The focus was on users located in Boston with over 100 followers. The process included pagination to retrieve up to 500 repositories per user, gathering profile details and repository data. Error handling with retry logic was implemented to ensure reliable data collection.
 
 ### Interesting Finding
