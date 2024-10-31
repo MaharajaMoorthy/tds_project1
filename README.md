@@ -22,16 +22,16 @@ This project involved scraping and analyzing data from GitHub users in Boston wi
 ## Steps Involved in the Project
 
 ### Step 1. Data Scraping:
-> Utilized the GitHub API with a personal access token to retrieve data on Boston users who had more than 100 followers. Collected comprehensive user details and repository information.
+- Utilized the GitHub API with a personal access token to retrieve data on Boston users who had more than 100 followers. Collected comprehensive user details and repository information.
 
 ### Step 2. Data Cleaning:
-> Cleaned the collected data to ensure consistency and accuracy. This included trimming whitespace, normalizing text fields such as company names, and formatting data according to the specifications in the problem statement.
+- Cleaned the collected data to ensure consistency and accuracy. This included trimming whitespace, normalizing text fields such as company names, and formatting data according to the specifications in the problem statement.
 
 ### Step 3. Data Analysis:
-> Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
+- Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
 
 ### Step 4. Documentation, Reporting, and Upload :
-> Compiled the findings and insights into a README document that summarized the data scraping process, key findings, and actionable recommendations based on the analysis. Prepared all project files, including the Python scripts for scraping and cleaning, the CSV files, and the README, and uploaded them to a GitHub repository.
+- Compiled the findings and insights into a README document that summarized the data scraping process, key findings, and actionable recommendations based on the analysis. Prepared all project files, including the Python scripts for scraping and cleaning, the CSV files, and the README, and uploaded them to a GitHub repository.
 
 
 ### Lets see each step in detail.
@@ -44,17 +44,17 @@ Data was collected using the GitHub API, following a structured approach for aut
 
 Here’s a breakdown of what was done:
 
-> **API Authentication** :  The script utilized a personal access token for authentication, which was included in the headers of each API request. This token ensured secure access to the GitHub API while respecting the set rate limits.
+- **API Authentication** :  The script utilized a personal access token for authentication, which was included in the headers of each API request. This token ensured secure access to the GitHub API while respecting the set rate limits.
 
-> **Rate Limit Monitoring** :  An initial authentication check was performed to retrieve the rate limit status. This involved checking how many requests remained and when the limit would reset. The reset time was adjusted to Indian Standard Time (IST) for convenience.
+- **Rate Limit Monitoring** :  An initial authentication check was performed to retrieve the rate limit status. This involved checking how many requests remained and when the limit would reset. The reset time was adjusted to Indian Standard Time (IST) for convenience.
 
-> **Data Retrieval** : The main focus of data retrieval was on users located in Boston with more than 100 followers. The script employed a search endpoint to find these users, with pagination support to manage the number of results returned in each request. For each user found, detailed information was fetched from the user endpoint, which included their login, name, company, location, email, hireable status, bio, public repository count, followers, following count, and account creation date.
+- **Data Retrieval** : The main focus of data retrieval was on users located in Boston with more than 100 followers. The script employed a search endpoint to find these users, with pagination support to manage the number of results returned in each request. For each user found, detailed information was fetched from the user endpoint, which included their login, name, company, location, email, hireable status, bio, public repository count, followers, following count, and account creation date.
 
-> **Repository Collection** :  For each user, the script fetched their public repositories, up to a maximum of 500. This was achieved by sending requests to the repositories endpoint, with pagination handling multiple pages of results
+- **Repository Collection** :  For each user, the script fetched their public repositories, up to a maximum of 500. This was achieved by sending requests to the repositories endpoint, with pagination handling multiple pages of results
 
-> **Error Handling** :  The script implemented retry logic for API requests that might fail due to transient issues. If an error occurred, it logged the user or repository that could not be fetched for further investigation
+- **Error Handling** :  The script implemented retry logic for API requests that might fail due to transient issues. If an error occurred, it logged the user or repository that could not be fetched for further investigation
 
-> **Data Storage** :  All collected data was stored in two separate lists, which were then converted into Pandas DataFrames and saved as CSV files (users.csv and repositories.csv). An error log was also created to document any failures during the scraping process.
+- **Data Storage** :  All collected data was stored in two separate lists, which were then converted into Pandas DataFrames and saved as CSV files (users.csv and repositories.csv). An error log was also created to document any failures during the scraping process.
 
 
 ### Here is the code block 
@@ -231,12 +231,14 @@ else:
 ## Step 2: Data Cleaning
 
 ### Data Cleaning for `users.csv` :
-> **Company Field**:
+- **Company Field**:
   - Removed any leading whitespace and the '@' character from the beginning of each company name.
   - Converted all company names to uppercase to ensure uniformity
-> **Hireable Field** :
+
+- **Hireable Field** :
   - Formatted the 'hireable' field to store only 'true', 'false', or an empty string if the value was null.
-> **Data Saving** :
+
+- **Data Saving** :
   - Saved the cleaned data to 'cleaned_users2.csv' and displayed a sample of the cleaned data to confirm the changes were applied correctly.
 
 ```
@@ -258,9 +260,10 @@ users_df.head()
 ```
 
 ### Data Cleaning for `repositories.csv` :
-> **Boolean Fields**:
+- **Boolean Fields**:
   - Formatted the 'has_projects' and 'has_wiki' fields to 'true', 'false', or leave as an empty string if null.
-> **Data Saving** :
+
+- **Data Saving** :
   - Saved the cleaned repository data to 'cleaned_repositories2.csv' and displayed a sample to ensure the cleaning was executed as expected.
 
 ```
@@ -284,8 +287,7 @@ repositories_df.head()
 Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
 
 
-
- > **I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.**
+ **I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.**
 
 
 
@@ -324,15 +326,15 @@ Analyzed the cleaned data to address the project assignment questions and provid
 
 ## Step 4: Documentation, Reporting and Upload
 
-> ### README Documentation: 
-  >> Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
+- ### README Documentation: 
+  - Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
 
-> ### Project Files: 
-  >> Organized all relevant project files within the repository, including: 
-  >>> The cleaned CSV files (`users.csv` and `repositories.csv`) for easy access to the processed data.
-  >>> This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
-  >>> A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
+- ### Project Files: 
+  - Organized all relevant project files within the repository, including: 
+  - The cleaned CSV files (`users.csv` and `repositories.csv`) for easy access to the processed data.
+  - This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
+  - A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
 
-> ### Final Upload to GitHub: 
-  >>Uploaded the README, CSV files, and the PDF of the Google Colab code to a GitHub repository.
+- ### Final Upload to GitHub: 
+  - Uploaded the README, CSV files, and the PDF of the Google Colab code to a GitHub repository.
 
