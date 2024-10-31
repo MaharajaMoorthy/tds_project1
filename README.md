@@ -9,13 +9,15 @@
 - ### Actionable Recommendation for Developers : 
   - Since a significant portion of repositories utilize wikis (85.8%) and project features (97.9%), developers should ensure their repositories have comprehensive documentation. This helps users understand the project and encourages contributions.
 
+---
+
 ## Project Overview
+
 This project involved scraping and analyzing data from GitHub users in Boston with over 100 followers to identify trends in programming languages, user engagement, and repository characteristics. The tools and libraries used included the GitHub API for data retrieval, Python for scripting and data manipulation, and Pandas for data organization. Final project deliverables included:
 - CSV files (`users.csv` and `repositories.csv`)
 - A README document
 - Code for data collection and cleaning
 
----
 
 ## Steps Involved in the Project
 
@@ -261,7 +263,7 @@ repositories_df.head()
 ## Step 3: Data Analysis
 Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
 
-I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.
+**I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.**
 
 ### Some insights from the data analysis:
 
