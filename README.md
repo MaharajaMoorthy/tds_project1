@@ -34,6 +34,7 @@ This project involved scraping and analyzing data from GitHub users in Boston wi
 - Compiled the findings and insights into a README document that summarized the data scraping process, key findings, and actionable recommendations based on the analysis. Prepared all project files, including the Python scripts for scraping and cleaning, the CSV files, and the README, and uploaded them to a GitHub repository.
 
 Lets see each step in detail.
+
 ---
 
 ### Step 1: Data Scraping
