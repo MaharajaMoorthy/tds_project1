@@ -284,7 +284,7 @@ repositories_df.head()
 
 Analyzed the cleaned data to address the project assignment questions and provide specific answers based on the findings. Additionally, I observed some interesting insights.
 
-**I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.**
+### **I have attached the Google Colab code as a separate PDF, which includes both the data cleaning process and my solution code to all 16 questions. Please refer to it for full details.**
 
 ### Some insights from the data analysis:
 
