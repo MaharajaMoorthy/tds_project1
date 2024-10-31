@@ -325,14 +325,14 @@ Analyzed the cleaned data to address the project assignment questions and provid
 ## Step 4: Documentation, Reporting and Upload
 
 > ### README Documentation: 
-  - Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
+  >> Created a README document summarizing the entire project, including the data scraping process, data cleaning, and key insights from the analysis.
 
 > ### Project Files: 
-  Organized all relevant project files within the repository, including: 
-  - The cleaned CSV files (`users.csv` and `repositories.csv`) for easy access to the processed data.
-  - This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
-  - A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
+  >> Organized all relevant project files within the repository, including: 
+  >>> The cleaned CSV files (`users.csv` and `repositories.csv`) for easy access to the processed data.
+  >>> This README document containing the project overview, outline, and the Python code for data scraping and cleaning.
+  >>> A Google Colab notebook (saved as a PDF) containing the complete code solutions for data cleaning and answers to all 16 project questions.
 
 > ### Final Upload to GitHub: 
-- Uploaded the README, CSV files, and the PDF of the Google Colab code to a GitHub repository.
+  >>Uploaded the README, CSV files, and the PDF of the Google Colab code to a GitHub repository.
 
